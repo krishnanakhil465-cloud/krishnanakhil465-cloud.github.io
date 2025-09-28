@@ -1,222 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Akhil Krishnan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    :root {
-      --theme: #0066cc;
-      --theme-dark: #004c9e;
-      --bg: #f7f9fc;
-      --text: #222;
-      --light: #fff;
-      --shadow: 0 2px 6px rgba(0, 0, 0, .08);
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    a {
-      color: var(--theme);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    a:active {
-      color: var(--theme-dark);
-    }
-    header {
-      background: var(--light);
-      padding: 50px 20px 40px;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
-    header img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--theme);
-    }
-    header h1 {
-      margin-top: 15px;
-      font-size: 2.2rem;
-      letter-spacing: 1px;
-    }
-    .contact {
-      margin-top: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      font-size: 0.95rem;
-    }
-    .contact span {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    main {
-      max-width: 950px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    section {
-      background: var(--light);
-      padding: 30px;
-      margin-bottom: 30px;
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-    }
-    section h2 {
-      margin-bottom: 18px;
-      font-size: 1.6rem;
-      color: var(--theme);
-      border-bottom: 2px solid var(--theme);
-      display: inline-block;
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    li {
-      margin-bottom: 12px;
-      padding-left: 20px;
-      position: relative;
-    }
-    li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--theme);
-      font-weight: bold;
-    }
-    footer {
-      text-align: center;
-      padding: 25px 10px;
-      font-size: 0.9rem;
-      color: #555;
-    }
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-      .contact {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+    <meta charset="utf-8">
+    <title>Akhil Krishnan – GitHub.io</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* ---------- ROOT ---------- */
+        :root {
+            --accent: #c00000; /* rich red */
+            --text: #000;
+            --bg: #fff;
+            --link: #c00000;
+            --link-active: #000;
+            --font: "Times New Roman", Times, serif;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: var(--font);
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        h1, h2 {
+            color: var(--accent);
+            margin: 1.2rem 0 .6rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+        }
+        h2 {
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: .2rem;
+        }
+        a {
+            color: var(--link);
+            text-decoration: none;
+        }
+        a:hover, a:active {
+            color: var(--link-active);
+            text-decoration: underline;
+        }
+        ul {
+            margin-left: 1.2rem;
+        }
+        li {
+            margin: .4rem 0;
+        }
+        .photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--accent);
+        }
+        .center {
+            text-align: center;
+        }
+        footer {
+            margin-top: 3rem;
+            font-size: .85rem;
+            text-align: center;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <img src="profile.jpg" alt="Profile picture">
-    <h1>Akhil Krishnan</h1>
-    <div class="contact">
-      <span>📱 +91-YOUR_NUMBER</span>
-      <span>✉️ <a href="mailto:YOUR_EMAIL@example.com">YOUR_EMAIL@example.com</a></span>
-      <span>🔗 <a href="https://YOUR_USERNAME.github.io" target="_blank">GitHub.io</a></span>
-      <span>💼 <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn</a></span>
-      <span>📚 <a href="https://scholar.google.com/citations?user=YOUR_GS_ID" target="_blank">Google Scholar</a></span>
+    <div class="container">
+        <!-- ================= PROFILE ================= -->
+        <div class="center">
+            <!-- replace src with your own base-64 string or relative path -->
+            <img src="data:image/jpeg;base64,REPLACE_WITH_YOUR_BASE64" alt="Profile" class="photo">
+            <h1>Akhil Krishnan</h1>
+            <p>
+                📞 +91-XXXXXXXXXX<br>
+                ✉️ <a href="mailto:akhil@example.com">akhil@example.com</a><br>
+                🌐 <a href="https://akhilkrishnan.github.io" target="_blank">GitHub.io</a><br>
+                🔗 <a href="https://linkedin.com/in/akhilkrishnan" target="_blank">LinkedIn</a><br>
+                📚 <a href="https://scholar.google.com/citations?user=XXXXXXX" target="_blank">Google Scholar</a>
+            </p>
+        </div>
+
+        <!-- ================= EDUCATION ================= -->
+        <section>
+            <h2>Education</h2>
+            <p><strong>Manipal University, Jaipur, Rajasthan, India</strong><br>
+            Branch: Electrical & Electronics Engineering<br>
+            CGPA: 7.0 / 10</p>
+        </section>
+
+        <!-- ================= PUBLICATIONS ================= -->
+        <section>
+            <h2>Research Publications, Patents & Books</h2>
+            <ul>
+                <li><strong>Nonlinear Dynamical Analysis of Inverted Pendulum Cart Mechanism Using Bifurcation Method</strong><br>
+                Authors: <b>Akhil Krishnan</b>, Rithesh & Vishnu Goyal – <a href="https://doi.org/10.XXXX/XXXX" target="_blank">[Paper]</a></li>
+
+                <li><strong>Desalination of Marine Water Using Machine Learning Method</strong><br>
+                Authors: K. U. Parvathy, <b>A. Krishnan</b>, M. Bukya, R. Kumar and P. Randhawa – <a href="https://doi.org/10.XXXX/XXXX" target="_blank">[Paper]</a></li>
+
+                <li><strong>A Comparative Study on Intelligent Adaptive Control Techniques on a Nonlinear Inverted Pendulum Cart Mechanism</strong><br>
+                <a href="https://doi.org/10.XXXX/XXXX" target="_blank">[Paper]</a></li>
+            </ul>
+        </section>
+
+        <!-- ================= ACCOLADES ================= -->
+        <section>
+            <h2>Scholastic Accolades</h2>
+            <ul>
+                <li><a href="certificates/summa-cum-laude.pdf" target="_blank"><strong>Summa Cum Laude</strong></a> – Awarded Summa Cum Laude with a GPA of 10/10 in 8<sup>th</sup> semester.</li>
+                <li><strong>Top 1 % out of 358 students</strong> – A+ grade in seven subjects (Switch-gear & Protection, Communication Systems, Power-System Operation & Control, FACTS, Linear Control Systems, Bioinformatics for Engineers & Sustainable Development).</li>
+            </ul>
+        </section>
+
+        <!-- ================= SCHOLARSHIPS ================= -->
+        <section>
+            <h2>Scholarships, Fellowships & Grants</h2>
+            <ul>
+                <li><a href="https://www.sbi.co.in/web/personal-banking/announcements/youth-for-india" target="_blank">State Bank of India Youth for India Fellowship</a> – 1 of 76 selected from 50 000 global applicants (0.152 %); grant INR 3 07 556.5.</li>
+                <li><a href="certificates/RAS-grant.pdf" target="_blank">Rajasthan Administrative Service Grants</a> – INR 30 000 for RO-plant installation under project VASUDHA.</li>
+                <li><a href="certificates/GDC-field-ops.pdf" target="_blank">Global Digital Corps Field Ops Fellowship</a> – COVID-19 disaster-management certification.</li>
+                <li><a href="certificates/MU-research-grant.pdf" target="_blank">Manipal University Research Grant</a> – INR 15 162 for IEEE international conference presentation.</li>
+            </ul>
+        </section>
+
+        <!-- ================= TECHNICAL STRENGTH ================= -->
+        <section>
+            <h2>Technical Strength</h2>
+            <ul>
+                <li>TRIZ – Theory of Solving Inventive Problems: <a href="certificates/TRIZ-L1.pdf" target="_blank">Level 1</a></li>
+                <li>Typesetting: LaTeX, Microsoft Word</li>
+                <li>Operating Systems: Windows & Ubuntu</li>
+                <li>Programming: Python, C & Java</li>
+            </ul>
+        </section>
+
+        <!-- ================= POSITIONS OF RESPONSIBILITY ================= -->
+        <section>
+            <h2>Positions of Responsibility</h2>
+            <ul>
+                <li>Organising Committee Member – Manipal University Model United Nations (hospitality lead for 70+ students).</li>
+                <li>Student Coordinator – MNEmerge & University of Kent international workshop (600 participants).</li>
+                <li>Fund Raiser – Dr. Rajarathnam Medical & Educational Foundation (INR 15 000 for “Save Child Save Life”).</li>
+                <li>Volunteer – Blood-donation camp (Rotary Club & Jain Social Group).</li>
+            </ul>
+        </section>
+
+        <!-- ================= MENTORING ================= -->
+        <section>
+            <h2>Mentoring Experiences</h2>
+            <ul>
+                <li><a href="https://www.unv.org" target="_blank">United Nations Volunteer</a></li>
+                <li><a href="https://aim.gov.in" target="_blank">Atal Innovative Mission</a></li>
+            </ul>
+        </section>
+
+        <!-- ================= LANGUAGES ================= -->
+        <section>
+            <h2>Languages</h2>
+            <p>Hindi, English, Malayalam, Kannada & Odiya</p>
+        </section>
+
+        <!-- ================= CURRENT ROLE ================= -->
+        <section>
+            <h2>Professional Experience</h2>
+            <p><strong>Gram Vikas, Mohuda</strong> – Strategic Leadership Team, Program Unit<br>
+            Junior Manager | Nov 2024 – present</p>
+            <ul>
+                <li>Support project holders for inter-thematic coordination.</li>
+                <li>Designed orientation framework for large-scale program roll-out to external organisations.</li>
+                <li>Identified gaps & proposed solutions for seamless inter-thematic coordination.</li>
+                <li>Organised field visits and reviews for project holders.</li>
+                <li>Nodal person for Program Unit liaison to Sundargarh District.</li>
+            </ul>
+        </section>
+
+        <!-- ================= FOOTER ================= -->
+        <footer>
+            © 2025 Akhil Krishnan. All rights reserved.
+        </footer>
     </div>
-  </header>
-
-  <main>
-    <section>
-      <h2>Education</h2>
-      <p><strong>Manipal University, Jaipur, Rajasthan, India</strong><br>
-      Branch: Electrical and Electronics Engineering<br>
-      CGPA: 7.0</p>
-    </section>
-
-    <section>
-      <h2>Work Experience</h2>
-      <p><strong>Gram Vikas, Mohuda — Strategic Leadership Team (Program Unit)</strong><br>
-      Junior Manager | Nov 2024 – Present</p>
-      <ul>
-        <li>Support to project holders for Inter-Thematic coordination.</li>
-        <li>Designed an orientation framework for the implementation of large-scale programs to external organizations.</li>
-        <li>Identified gaps and proposed solutions for proper inter-thematic coordination.</li>
-        <li>Organized field visits and reviews for the project holders.</li>
-        <li>Assigned as nodal person for point of contact from the Program Unit to Sundargarh District.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Research Publications, Patents &amp; Books</h2>
-      <ul>
-        <li><a href="URL1" target="_blank"><strong>Nonlinear Dynamical Analysis of Inverted Pendulum Cart Mechanism Using Bifurcation Method</strong></a><br>
-        Authors: <strong>Akhil Krishnan</strong>, Rithesh &amp; Vishnu Goyal</li>
-
-        <li><a href="URL2" target="_blank"><strong>Desalination of Marine Water Using Machine Learning Method</strong></a><br>
-        Authors: K. U. Parvathy, <strong>A. Krishnan</strong>, M. Bukya, R. Kumar and P. Randhawa</li>
-
-        <li><a href="URL3" target="_blank"><strong>A Comparative Study on Intelligent Adaptive Control Techniques on a Nonlinear Inverted Pendulum Cart Mechanism</strong></a></li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Scholastic Accolades</h2>
-      <ul>
-        <li><a href="URL_SUMMA" target="_blank"><strong>Summa Cum Laude</strong></a> — Awarded Summa Cum Laude with a GPA of 10/10 in the 8<sup>th</sup> semester.</li>
-        <li><strong>Top 1 %</strong> out of 358 students — A+ grade in 7 subjects including Switch Gears &amp; Protection, Communication Systems, Power System Operation &amp; Control, Flexible AC Transmission System, Linear Control Systems, Bioinformatics for Engineers and Sustainable Development.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Scholarships, Fellowships &amp; Grants</h2>
-      <ul>
-        <li><a href="URL_SBI" target="_blank"><strong>State Bank of India Youth for India Fellowship</strong></a> — 1 of 76 selected from 50 000 global applicants (0.152 % intake); received INR 3 07 556.5 including travel, housing, language training, project &amp; emergency allowances.</li>
-        <li><a href="URL_RAS" target="_blank"><strong>Rajasthan Administrative Service Grants</strong></a> — INR 30 000 for installation of RO plant under project VASUDHA: The Lifeblood of Rural Communities.</li>
-        <li><a href="URL_GDC" target="_blank"><strong>Global Digital Corps Field Ops Fellowship</strong></a> — Certified for disaster management &amp; field operations during COVID-19 national emergency.</li>
-        <li><a href="URL_MU" target="_blank"><strong>Manipal University Research Grant</strong></a> — INR 15 162 for presenting IEEE international conference paper on Nonlinear Dynamics.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Technical Strength</h2>
-      <ul>
-        <li><a href="URL_TRIZ" target="_blank"><strong>TRIZ – Theory of Solving Inventive Problems: Level 1</strong></a></li>
-        <li>Typesetting: LaTeX and Microsoft Word</li>
-        <li>Operating Systems: Windows &amp; Ubuntu</li>
-        <li>Programming Languages: Python, C &amp; Java</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Positions of Responsibility</h2>
-      <ul>
-        <li>Organising Committee Member, Manipal University Model United Nations — spearheaded 70 + students under the Hospitality section.</li>
-        <li>Student Coordinator, MNEmerge &amp; University of Kent — managed scheduling for 600 participants during an international workshop.</li>
-        <li>Fund Raiser, Dr. Rajarathnam Medical &amp; Educational Foundation — donated INR 15 000 for treating children with heart diseases under Save Child Save Life mission.</li>
-        <li>Volunteer, Blood Donation Camp (Rotary Club &amp; Jain Social Group) — provided refreshments &amp; post-donation care.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Mentoring Experiences</h2>
-      <ul>
-        <li><a href="URL_UNV" target="_blank"><strong>United Nations Volunteer</strong></a></li>
-        <li><a href="URL_AIM" target="_blank"><strong>Atal Innovative Mission</strong></a></li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Languages</h2>
-      <p>Hindi, English, Malayalam, Kannada &amp; Odiya</p>
-    </section>
-  </main>
-
-  <footer>
+</body>
+</html>
     © 2025 Akhil Krishnan. All rights reserved.
   </footer>
 </body>
