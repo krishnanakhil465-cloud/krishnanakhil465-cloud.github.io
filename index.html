@@ -1,664 +1,478 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akhil Krishnan - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
-            background: #000000;
-            overflow-x: hidden;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000000;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
-            top: -250px;
-            right: -250px;
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 1;
-            padding: 40px 20px;
-        }
-
-        .profile-img-container {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 30px;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 4px solid #dc2626;
-            box-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
-            object-fit: cover;
-            display: block;
-        }
-
-        .upload-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-        }
-
-        .profile-img-container:hover .upload-overlay {
-            opacity: 1;
-        }
-
-        .upload-text {
-            color: #dc2626;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        #profilePicInput, #trizCertInput {
-            display: none;
-        }
-
-        h1 {
-            font-size: 3.5em;
-            margin-bottom: 10px;
-            color: #dc2626;
-        }
-
-        .tagline {
-            font-size: 1.3em;
-            color: #ffffff;
-            margin-bottom: 30px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            padding: 4px 12px;
-            background: #dc2626;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 4px;
-            border: 1px solid #dc2626;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            font-size: 0.8em;
-        }
-
-        .social-btn:hover {
-            background: #ef4444;
-            border-color: #ef4444;
-        }
-
-        .social-btn:active {
-            background: #991b1b;
-            border-color: #991b1b;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        .section {
-            margin-bottom: 80px;
-        }
-
-        .section-title {
-            font-size: 2.5em;
-            margin-bottom: 40px;
-            color: #dc2626;
-            border-bottom: 2px solid #dc2626;
-            padding-bottom: 15px;
-        }
-
-        .card {
-            background: #000000;
-            border: 1px solid #333333;
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            border-color: #dc2626;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(220, 38, 38, 0.2);
-        }
-
-        .card h3 {
-            color: #dc2626;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .card-meta {
-            color: #cccccc;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
-
-        .card p, .card ul {
-            color: #ffffff;
-        }
-
-        .card ul {
-            list-style-position: inside;
-            margin-top: 15px;
-        }
-
-        .card ul li {
-            margin-bottom: 8px;
-        }
-
-        .publication-title {
-            color: #ffffff;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .publication-title a {
-            color: #dc2626;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .publication-title a:hover {
-            color: #ef4444;
-            text-decoration: underline;
-        }
-
-        .authors {
-            color: #cccccc;
-            font-size: 0.95em;
-        }
-
-        .current-role {
-            border-left: 4px solid #dc2626;
-            background: #0a0a0a;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            background: #000000;
-            color: #dc2626;
-            padding: 8px 16px;
-            border-radius: 20px;
-            margin: 5px;
-            font-size: 0.9em;
-            border: 1px solid #dc2626;
-        }
-
-        .clickable-link {
-            color: #dc2626;
-            text-decoration: none;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            font-weight: 600;
-        }
-
-        .clickable-link:hover {
-            color: #ef4444;
-            text-decoration: underline;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background: #000000;
-            color: #cccccc;
-            border-top: 1px solid #333333;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-            }
-
-            .section-title {
-                font-size: 2em;
-            }
-
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5em;
-            color: #dc2626;
-            font-weight: 700;
-        }
-
-        .stat-label {
-            color: #ffffff;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-        /* Smaller and unified edit-link styling */
-        .edit-link {
-            display: inline-block;
-            margin-left: 8px;
-            padding: 2px 8px;
-            background: #dc2626;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.8em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid #dc2626;
-            vertical-align: middle;
-        }
-
-        .edit-link:hover {
-            background: #ef4444;
-            border-color: #ef4444;
-        }
-
-        .edit-link:active {
-            background: #991b1b;
-            border-color: #991b1b;
-        }
-
-        .edit-link.saved {
-            background: #16a34a;
-            border-color: #16a34a;
-        }
-
-        .edit-link.saved:hover {
-            background: #22c55e;
-            border-color: #22c55e;
-        }
-
-        .link-input-group {
-            display: none;
-            margin-top: 10px;
-            padding: 15px;
-            background: #0a0a0a;
-            border: 1px solid #dc2626;
-            border-radius: 6px;
-        }
-
-        .link-input-group input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            background: #000000;
-            border: 1px solid #333333;
-            color: #ffffff;
-            border-radius: 4px;
-        }
-
-        .link-input-group button {
-            padding: 8px 16px;
-            background: #dc2626;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        .link-input-group button:hover {
-            background: #ef4444;
-        }
-
-        /* TRIZ Certificate message styling */
-        #trizCertMsg {
-            color: #16a34a;
-            font-size: 0.9em;
-            display: inline-block;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Akhil Krishnan - Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      color: white;
+      background-color: black;
+      line-height: 1.6;
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
+      top: -250px;
+      right: -250px;
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .hero-content {
+      padding: 40px 20px;
+      text-align: center;
+      z-index: 1;
+    }
+    .profile-img-container {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 30px;
+      position: relative;
+      cursor: pointer;
+    }
+    .profile-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 4px solid #dc2626;
+      box-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+      object-fit: cover;
+      display: block;
+    }
+    .upload-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+      cursor: pointer;
+    }
+    .profile-img-container:hover .upload-overlay {
+      opacity: 1;
+    }
+    .upload-text {
+      color: #dc2626;
+      font-size: 14px;
+      text-align: center;
+    }
+    #profilePicInput,
+    #trizCertInput {
+      display: none;
+    }
+    h1 {
+      font-size: 3.5em;
+      margin-bottom: 10px;
+      color: #dc2626;
+    }
+    .tagline {
+      margin-bottom: 30px;
+      font-size: 1.3em;
+    }
+    .social-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .social-btn {
+      padding: 4px 12px;
+      background: #dc2626;
+      color: white;
+      background-color: black;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 25px;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      border-color: #dc2626;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(220, 38, 38, 0.2);
+    }
+    .card h3 {
+      color: #dc2626;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    .card-meta {
+      color: #ccc;
+      font-size: 0.9em;
+      margin-bottom: 15px;
+    }
+    .card p,
+    .card ul {
+      color: white;
+    }
+    .card ul {
+      list-style-position: inside;
+      margin-top: 15px;
+    }
+    .card ul li {
+      margin-bottom: 8px;
+    }
+    .publication-title {
+      color: white;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .publication-title a {
+      color: #dc2626;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .publication-title a:hover {
+      color: #ef4444;
+      text-decoration: underline;
+    }
+    .authors {
+      color: #ccc;
+      font-size: 0.95em;
+    }
+    .current-role {
+      border-left: 4px solid #dc2626;
+      background: #0a0a0a;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .edit-link {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 2px 8px;
+      background: #dc2626;
+      color: white;
+      background: black;
+      border: 1px solid #333;
+      color: white;
+      border-radius: 4px;
+    }
+    .link-input-group button {
+      padding: 8px 16px;
+      background: #dc2626;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .link-input-group button:hover {
+      background: #ef4444;
+    }
+    #trizCertMsg {
+      color: #16a34a;
+      font-size: 0.9em;
+      display: block;
+      margin-top: 8px;
+    }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: black;
+      color: #ccc;
+      border-top: 1px solid #333;
+    }
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+      .section-title {
+        font-size: 2em;
+      }
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="profile-img-container" onclick="document.getElementById('profilePicInput').click()">
-                <img id="profileImage" src="https://via.placeholder.com/200/000000/dc2626?text=Upload+Photo" alt="Akhil Krishnan" class="profile-img">
-                <div class="upload-overlay">
-                    <div class="upload-text">
-                        📷<br>Click to Upload
-                    </div>
-                </div>
-            </div>
-            <input type="file" id="profilePicInput" accept="image/*">
-            <h1>Akhil Krishnan</h1>
-            <p class="tagline">Research Engineer | Social Impact Strategist | Published Researcher</p>
-            <div class="social-links">
-                <a href="mailto:akhil@example.com" class="social-btn">📧 Email</a>
-                <a href="https://github.com/akhilkrishnan" target="_blank" class="social-btn">💻 GitHub</a>
-                <a href="https://linkedin.com/in/akhilkrishnan" target="_blank" class="social-btn">💼 LinkedIn</a>
-                <a href="https://scholar.google.com/citations?user=akhilkrishnan" target="_blank" class="social-btn">🎓 Scholar</a>
-            </div>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="profile-img-container" onclick="document.getElementById('profilePicInput').click()">
+        <img
+          id="profileImage"
+          src="https://via.placeholder.com/200/000000/dc2626?text=Upload+Photo"
+          alt="Akhil Krishnan"
+          class="profile-img"
+        />
+        <div class="upload-overlay">
+          <div class="upload-text">📷<br />Click to Upload</div>
         </div>
+      </div>
+      <input type="file" id="profilePicInput" accept="image/*" />
+      <h1>Akhil Krishnan</h1>
+      <p class="tagline">Research Engineer | Social Impact Strategist | Published Researcher</p>
+      <div class="social-links">
+        <a href="mailto:akhil@example.com" class="social-btn">📧 Email</a>
+        <a href="https://github.com/akhilkrishnan" target="_blank" class="social-btn">💻 GitHub</a>
+        <a href="https://linkedin.com/in/akhilkrishnan" target="_blank" class="social-btn">💼 LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=akhilkrishnan" target="_blank" class="social-btn">🎓 Scholar</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- 1. Education -->
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+      <div class="card">
+        <h3>B.Tech in Electrical and Electronics Engineering</h3>
+        <div class="card-meta">Manipal University, Jaipur, Rajasthan, India | CGPA: 7.0</div>
+      </div>
     </section>
 
-    <div class="container">
-        <!-- Current Position -->
-        <section class="section">
-            <h2 class="section-title">Current Position</h2>
-            <div class="card current-role">
-                <h3>Junior Manager - Strategic Leadership Team</h3>
-                <div class="card-meta">Gram Vikas, Mohuda | Nov 2024 - Present</div>
-                <p style="margin-bottom: 15px;">Support to project holders for Inter-Thematic coordination within the Program Unit.</p>
-                <ul>
-                    <li>Designed orientation framework for large-scale program implementation to external organizations</li>
-                    <li>Identified gaps and proposed solutions for inter-thematic coordination</li>
-                    <li>Organized field visits and reviews for project holders</li>
-                    <li>Nodal person for Program Unit to Sundargarh District</li>
-                </ul>
-            </div>
-        </section>
+    <!-- 2. Scholastic Accolades -->
+    <section class="section">
+      <h2 class="section-title">Scholastic Accolodes</h2>
+      <div class="grid">
+        <div class="card" id="achieve1">
+          <h3>
+            <a href="#" id="achieve1-link" class="clickable-link" onclick="return false;">Summa Cum Laude</a>
+            <span class="edit-link" onclick="showLinkEditor('achieve1')">Edit Link</span>
+          </h3>
+          <p>Awarded GPA 10/10 for exceptional academic performance in 8th semester.</p>
+          <div id="achieve1-editor" class="link-input-group">
+            <input type="text" id="achieve1-url" placeholder="Enter certificate URL" />
+            <button onclick="saveLink('achieve1')">Save</button>
+            <button onclick="cancelLinkEditor('achieve1')">Cancel</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Top 1% Academic Rank</h3>
+          <p>Ranked in top 1% out of 358 students. A+ grades in 7 subjects including advanced power systems and control engineering.</p>
+        </div>
+      </div>
+    </section>
 
-        <!-- Education -->
-        <section class="section">
-            <h2 class="section-title">Education</h2>
-            <div class="card">
-                <h3>B.Tech in Electrical and Electronics Engineering</h3>
-                <div class="card-meta">Manipal University, Jaipur, Rajasthan, India | CGPA: 7.0</div>
-            </div>
-        </section>
+    <!-- 3. Research Publications, Patents & Grants -->
+    <section class="section">
+      <h2 class="section-title">Research Publications, Patents & Grants</h2>
+      <div class="grid">
+        <!-- Publication 1 -->
+        <div class="card" id="pub1">
+          <div class="publication-title">
+            <a href="#" id="pub1-link" onclick="return false;">Nonlinear Dynamical Analysis of Inverted Pendulum Cart Mechanism using Bifurcation Method</a>
+            <span class="edit-link" onclick="showLinkEditor('pub1')">Edit Link</span>
+          </div>
+          <div class="authors">Authors: <strong>Akhil Krishnan</strong>, Rithesh &amp; Vishnu Goyal</div>
+          <div id="pub1-editor" class="link-input-group">
+            <input type="text" id="pub1-url" placeholder="Enter publication URL" />
+            <button onclick="saveLink('pub1')">Save</button>
+            <button onclick="cancelLinkEditor('pub1')">Cancel</button>
+          </div>
+        </div>
+        <!-- Publication 2 -->
+        <div class="card" id="pub2">
+          <div class="publication-title">
+            <a href="#" id="pub2-link" onclick="return false;">Desalination of Marine Water using Machine Learning Method</a>
+            <span class="edit-link" onclick="showLinkEditor('pub2')">Edit Link</span>
+          </div>
+          <div class="authors">Authors: K. U. Parvathy, <strong>A. Krishnan</strong>, M. Bukya, R. Kumar and P. Randhawa</div>
+          <div id="pub2-editor" class="link-input-group">
+            <input type="text" id="pub2-url" placeholder="Enter publication URL" />
+            <button onclick="saveLink('pub2')">Save</button>
+            <button onclick="cancelLinkEditor('pub2')">Cancel</button>
+          </div>
+        </div>
+        <!-- Publication 3 -->
+        <div class="card" id="pub3">
+          <div class="publication-title">
+            <a href="#" id="pub3-link" onclick="return false;">A Comparative Study on Intelligent Adaptive Control Techniques on a Nonlinear Inverted Pendulum Cart Mechanism</a>
+            <span class="edit-link" onclick="showLinkEditor('pub3')">Edit Link</span>
+          </div>
+          <div class="authors">Author: <strong>Akhil Krishnan</strong></div>
+          <div id="pub3-editor" class="link-input-group">
+            <input type="text" id="pub3-url" placeholder="Enter publication URL" />
+            <button onclick="saveLink('pub3')">Save</button>
+            <button onclick="cancelLinkEditor('pub3')">Cancel</button>
+          </div>
+        </div>
+        <!-- Fellowship 1 -->
+        <div class="card" id="fellow1">
+          <h3>
+            <a href="#" id="fellow1-link" class="clickable-link" onclick="return false;">State Bank of India Youth for India Fellowship</a>
+            <span class="edit-link" onclick="showLinkEditor('fellow1')">Edit Link</span>
+          </h3>
+          <p>Selected as 1 of 76 from 50,000 global applicants (0.152% acceptance rate). Comprehensive fellowship including travel, housing, language training, and project allowances totaling $4,335.</p>
+          <div id="fellow1-editor" class="link-input-group">
+            <input type="text" id="fellow1-url" placeholder="Enter fellowship URL" />
+            <button onclick="saveLink('fellow1')">Save</button>
+            <button onclick="cancelLinkEditor('fellow1')">Cancel</button>
+          </div>
+        </div>
+        <!-- Fellowship 2 -->
+        <div class="card" id="fellow2">
+          <h3>
+            <a href="#" id="fellow2-link" class="clickable-link" onclick="return false;">Rajasthan Administrative Service Grant</a>
+            <span class="edit-link" onclick="showLinkEditor('fellow2')">Edit Link</span>
+          </h3>
+          <p>Received INR 30,000 for the installation of Reverse Osmosis (RO) plant in project VASUDHA: The Lifeblood of Rural Communities.</p>
+          <div id="fellow2-editor" class="link-input-group">
+            <input type="text" id="fellow2-url" placeholder="Enter grant URL" />
+            <button onclick="saveLink('fellow2')">Save</button>
+            <button onclick="cancelLinkEditor('fellow2')">Cancel</button>
+          </div>
+        </div>
+        <!-- Fellowship 3 -->
+        <div class="card" id="fellow3">
+          <h3>
+            <a href="#" id="fellow3-link" class="clickable-link" onclick="return false;">Global Digital Corps Field Ops Fellowship</a>
+            <span class="edit-link" onclick="showLinkEditor('fellow3')">Edit Link</span>
+          </h3>
+          <p>COVID-19 emergency response certification in disaster management and field operations.</p>
+          <div id="fellow3-editor" class="link-input-group">
+            <input type="text" id="fellow3-url" placeholder="Enter fellowship URL" />
+            <button onclick="saveLink('fellow3')">Save</button>
+            <button onclick="cancelLinkEditor('fellow3')">Cancel</button>
+          </div>
+        </div>
+        <!-- Fellowship 4 -->
+        <div class="card" id="fellow4">
+          <h3>
+            <a href="#" id="fellow4-link" class="clickable-link" onclick="return false;">Manipal University Research Grant</a>
+            <span class="edit-link" onclick="showLinkEditor('fellow4')">Edit Link</span>
+          </h3>
+          <p>Received $227 as financial aid for presenting research on Nonlinear Dynamics at IEEE International Conference.</p>
+          <div id="fellow4-editor" class="link-input-group">
+            <input type="text" id="fellow4-url" placeholder="Enter grant URL" />
+            <button onclick="saveLink('fellow4')">Save</button>
+            <button onclick="cancelLinkEditor('fellow4')">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- Research Publications -->
-        <section class="section">
-            <h2 class="section-title">Research Publications</h2>
-            <div class="card" id="pub1">
-                <div class="publication-title">
-                    <a href="#" id="pub1-link" onclick="return false;">Nonlinear Dynamical Analysis of Inverted Pendulum Cart Mechanism using Bifurcation Method</a>
-                    <span class="edit-link" onclick="showLinkEditor('pub1')">Edit Link</span>
-                </div>
-                <div class="authors">Authors: <strong>Akhil Krishnan</strong>, Rithesh & Vishnu Goyal</div>
-                <div id="pub1-editor" class="link-input-group">
-                    <input type="text" id="pub1-url" placeholder="Enter publication URL">
-                    <button onclick="saveLink('pub1')">Save</button>
-                    <button onclick="cancelLinkEditor('pub1')">Cancel</button>
-                </div>
-            </div>
+    <!-- 4. Technical Skills -->
+    <section class="section">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="grid">
+        <div class="card">Python</div>
+        <div class="card">C</div>
+        <div class="card">Java</div>
+        <div class="card">LaTeX</div>
+        <div class="card">
+          TRIZ Level 1
+          <span class="edit-link" onclick="document.getElementById('trizCertInput').click()">Upload Certificate</span>
+          <input type="file" id="trizCertInput" accept="image/*,.pdf" />
+          <span id="trizCertMsg"></span>
+        </div>
+        <div class="card">Windows</div>
+        <div class="card">Ubuntu</div>
+        <div class="card">Machine Learning</div>
+        <div class="card">Control Systems</div>
+        <div class="card">Nonlinear Dynamics</div>
+      </div>
+    </section>
 
-            <div class="card" id="pub2">
-                <div class="publication-title">
-                    <a href="#" id="pub2-link" onclick="return false;">Desalination of Marine Water using Machine Learning Method</a>
-                    <span class="edit-link" onclick="showLinkEditor('pub2')">Edit Link</span>
-                </div>
-                <div class="authors">Authors: K. U. Parvathy, <strong>A. Krishnan</strong>, M. Bukya, R. Kumar and P. Randhawa</div>
-                <div id="pub2-editor" class="link-input-group">
-                    <input type="text" id="pub2-url" placeholder="Enter publication URL">
-                    <button onclick="saveLink('pub2')">Save</button>
-                    <button onclick="cancelLinkEditor('pub2')">Cancel</button>
-                </div>
-            </div>
+    <!-- 5. Current Position -->
+    <section class="section">
+      <h2 class="section-title">Current Position</h2>
+      <div class="card current-role">
+        <h3>Junior Manager - Strategic Leadership Team</h3>
+        <div class="card-meta">Gram Vikas, Mohuda | Nov 2024 - Present</div>
+        <p>Support to project holders for Inter-Thematic coordination within the Program Unit.</p>
+        <ul>
+          <li>Designed orientation framework for large-scale program implementation to external organizations</li>
+          <li>Identified gaps and proposed solutions for inter-thematic coordination</li>
+          <li>Organized field visits and reviews for project holders</li>
+          <li>Nodal person for Program Unit to Sundargarh District</li>
+        </ul>
+      </div>
+    </section>
 
-            <div class="card" id="pub3">
-                <div class="publication-title">
-                    <a href="#" id="pub3-link" onclick="return false;">A Comparative Study on Intelligent Adaptive Control Techniques on a Nonlinear Inverted Pendulum Cart Mechanism</a>
-                    <span class="edit-link" onclick="showLinkEditor('pub3')">Edit Link</span>
-                </div>
-                <div class="authors">Author: <strong>Akhil Krishnan</strong></div>
-                <div id="pub3-editor" class="link-input-group">
-                    <input type="text" id="pub3-url" placeholder="Enter publication URL">
-                    <button onclick="saveLink('pub3')">Save</button>
-                    <button onclick="cancelLinkEditor('pub3')">Cancel</button>
-                </div>
-            </div>
-        </section>
+    <!-- 6. Languages -->
+    <section class="section">
+      <h2 class="section-title">Languages</h2>
+      <div class="card">
+        <p>English, Hindi, Malayalam, Kannada, Tamil and Odiya</p>
+      </div>
+    </section>
+  </div>
 
-        <!-- Fellowships & Grants -->
-        <section class="section">
-            <h2 class="section-title">Fellowships & Grants</h2>
-            <div class="card" id="fellow1">
-                <h3>
-                    <a href="#" id="fellow1-link" class="clickable-link" onclick="return false;">State Bank of India Youth for India Fellowship</a>
-                    <span class="edit-link" onclick="showLinkEditor('fellow1')">Edit Link</span>
-                </h3>
-                <p>Selected as 1 of 76 from 50,000 global applicants (0.152% acceptance rate). Comprehensive fellowship including travel, housing, language training, and project allowances totaling $4,335.</p>
-                <div id="fellow1-editor" class="link-input-group">
-                    <input type="text" id="fellow1-url" placeholder="Enter fellowship URL">
-                    <button onclick="saveLink('fellow1')">Save</button>
-                    <button onclick="cancelLinkEditor('fellow1')">Cancel</button>
-                </div>
-            </div>
+  <footer>
+    <p>&copy; 2024 Akhil Krishnan. All rights reserved.</p>
+    <p style="margin-top: 10px; font-size: 0.9em;">Built with passion for research and social impact</p>
+  </footer>
 
-            <div class="card" id="fellow2">
-                <h3>
-                    <a href="#" id="fellow2-link" class="clickable-link" onclick="return false;">Rajasthan Administrative Service Grant</a>
-                    <span class="edit-link" onclick="showLinkEditor('fellow2')">Edit Link</span>
-                </h3>
-                <p>Received INR 30,000 for the installation of Reverse Osmosis (RO) plant in project VASUDHA: The Lifeblood of Rural Communities.</p>
-                <div id="fellow2-editor" class="link-input-group">
-                    <input type="text" id="fellow2-url" placeholder="Enter grant URL">
-                    <button onclick="saveLink('fellow2')">Save</button>
-                    <button onclick="cancelLinkEditor('fellow2')">Cancel</button>
-                </div>
-            </div>
+  <script>
+    document.getElementById('profilePicInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('profileImage').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
 
-            <div class="card" id="fellow3">
-                <h3>
-                    <a href="#" id="fellow3-link" class="clickable-link" onclick="return false;">Global Digital Corps Field Ops Fellowship</a>
-                    <span class="edit-link" onclick="showLinkEditor('fellow3')">Edit Link</span>
-                </h3>
-                <p>COVID-19 emergency response certification in disaster management and field operations.</p>
-                <div id="fellow3-editor" class="link-input-group">
-                    <input type="text" id="fellow3-url" placeholder="Enter fellowship URL">
-                    <button onclick="saveLink('fellow3')">Save</button>
-                    <button onclick="cancelLinkEditor('fellow3')">Cancel</button>
-                </div>
-            </div>
+    document.getElementById('trizCertInput').addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      if (file) {
+        document.getElementById('trizCertMsg').textContent = 'Certificate uploaded: ' + file.name;
+      } else {
+        document.getElementById('trizCertMsg').textContent = '';
+      }
+    });
 
-            <div class="card" id="fellow4">
-                <h3>
-                    <a href="#" id="fellow4-link" class="clickable-link" onclick="return false;">Manipal University Research Grant</a>
-                    <span class="edit-link" onclick="showLinkEditor('fellow4')">Edit Link</span>
-                </h3>
-                <p>Received $227 as financial aid for presenting research on Nonlinear Dynamics at IEEE International Conference.</p>
-                <div id="fellow4-editor" class="link-input-group">
-                    <input type="text" id="fellow4-url" placeholder="Enter grant URL">
-                    <button onclick="saveLink('fellow4')">Save</button>
-                    <button onclick="cancelLinkEditor('fellow4')">Cancel</button>
-                </div>
-            </div>
-        </section>
+    function showLinkEditor(id) {
+      document.getElementById(id + '-editor').style.display = 'block';
+    }
 
-        <!-- Achievements -->
-        <section class="section">
-            <h2 class="section-title">Academic Achievements</h2>
-            <div class="grid">
-                <div class="card" id="achieve1">
-                    <h3>
-                        <a href="#" id="achieve1-link" class="clickable-link" onclick="return false;">Summa Cum Laude</a>
-                        <span class="edit-link" onclick="showLinkEditor('achieve1')">Edit Link</span>
-                    </h3>
-                    <p>Awarded GPA 10/10 for exceptional academic performance in 8th semester.</p>
-                    <div id="achieve1-editor" class="link-input-group">
-                        <input type="text" id="achieve1-url" placeholder="Enter certificate URL">
-                        <button onclick="saveLink('achieve1')">Save</button>
-                        <button onclick="cancelLinkEditor('achieve1')">Cancel</button>
-                    </div>
-                </div>
+    function cancelLinkEditor(id) {
+      document.getElementById(id + '-editor').style.display = 'none';
+    }
 
-                <div class="card">
-                    <h3>Top 1% Academic Rank</h3>
-                    <p>Ranked in top 1% out of 358 students. A+ grades in 7 subjects including advanced power systems and control engineering.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Technical Skills -->
-        <section class="section">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="card">
-                <div>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">C</span>
-                    <span class="skill-tag">Java</span>
-                    <span class="skill-tag">LaTeX</span>
-                    <span class="skill-tag">TRIZ Level 1</span>
-                    <span class="edit-link" onclick="document.getElementById('trizCertInput').click()">Upload Certificate</span>
-                    <input type="file" id="trizCertInput" accept="image/*,.pdf">
-                    <span id="trizCertMsg"></span>
-                    <span class="skill-tag">Windows</span>
-                    <span class="skill-tag">Ubuntu</span>
-                    <span class="skill-tag">Machine Learning</span>
-                    <span class="skill-tag">Control Systems</span>
-                    <span class="skill-tag">Nonlinear Dynamics</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Leadership -->
-        <section class="section">
-            <h2 class="section-title">Leadership Experience</h2>
-            <div class="card">
-                <h3>Organizing Committee Member</h3>
-                <div class="card-meta">Manipal University Model United Nations</div>
-                <p>Led hospitality section supervising 70+ students during the event.</p>
-            </div>
-            <div class="card">
-                <h3>Student Coordinator</h3>
-                <div class="card-meta">MNEmerge & University of Kent</div>
-                <p>Coordinated and managed scheduling for international workshop with 600 participants.</p>
-            </div>
-            <div class="card">
-                <h3>Fund Raiser</h3>
-                <div class="card-meta">Dr. Rajarathnam Medical & Educational Foundation</div>
-                <p>Successfully raised funds for medical and educational initiatives.</p>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Akhil Krishnan. All rights reserved.</p>
-        <p style="margin-top: 10px; font-size: 0.9em;">Built with passion for research and social impact</p>
-    </footer>
-
-    <script>
-        // Profile picture upload
-        document.getElementById('profilePicInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profileImage').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Link editing functions
-        function showLinkEditor(id) {
-            document.getElementById(id + '-editor').style.display = 'block';
-        }
-
-        function cancelLinkEditor(id) {
-            document.getElementById(id + '-editor').style.display = 'none';
-        }
-
-        function saveLink(id) {
-            const url = document.getElementById(id + '-url').value;
-            if (url) {
-                const link = document.getElementById(id + '-link');
-                link.href = url;
-                link.onclick = null;
-                link.target = '_blank';
-                document.getElementById(id + '-url').value = '';
-                cancelLinkEditor(id);
-
-                // Change button color to indicate saved state
-                const editButton = event.target.closest('.card').querySelector('.edit-link');
-                editButton.classList.add('saved');
-                editButton.textContent = 'Link Saved ✓';
-
-                // Reset after 2 seconds
-                setTimeout(() => {
-                    editButton.classList.remove('saved');
-                    editButton.textContent = 'Edit Link';
-                }, 2000);
-            } else {
-                alert('Please enter a valid URL');
-            }
-        }
-
-        // TRIZ certificate upload
-        document.getElementById('trizCertInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                document.getElementById('trizCertMsg').textContent = 'Certificate uploaded: ' + file.name;
-            } else {
-                document.getElementById('trizCertMsg').textContent = '';
-            }
-        });
-    </script>
+    function saveLink(id) {
+      const url = document.getElementById(id + '-url').value.trim();
+      if (url) {
+        const link = document.getElementById(id + '-link');
+        link.href = url;
+        link.onclick = null;
+        link.target = '_blank';
+        cancelLinkEditor(id);
+        const editButton = event.target.closest('.card').querySelector('.edit-link');
+        editButton.classList.add('saved');
+        editButton.textContent = 'Link Saved ✓';
+        setTimeout(() => {
+          editButton.classList.remove('saved');
+          editButton.textContent = 'Edit Link';
+        }, 2000);
+      } else {
+        alert('Please enter a valid URL');
+      }
+    }
+  </script>
 </body>
-</html
+</html>
