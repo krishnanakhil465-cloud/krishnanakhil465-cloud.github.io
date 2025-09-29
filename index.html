@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akhil Krishnan - Profile</title>
+    <title>Akhil Krishnan - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -11,594 +11,654 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-        }
-
         body {
-            font-family: 'Times New Roman', Times, serif;
-            line-height: 1.7;
-            color: #f0f0f0;
-            background: #000000; /* pure pitch black */
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: #000000;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .header {
-            text-align: center;
-            padding: 50px 0;
-            background: #0a0a0a;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.25);
-            margin-bottom: 40px;
-            border: 1px solid rgba(220, 38, 38, 0.3);
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000000;
             position: relative;
             overflow: hidden;
         }
 
-        .header::before {
+        .hero::before {
             content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 40px 20px;
+        }
+
+        .profile-img-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #dc2626;
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+            object-fit: cover;
+            display: block;
+        }
+
+        .upload-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: #dc2626;
-        }
-
-        .profile-pic-upload {
-            width: 180px;
-            height: 180px;
+            height: 100%;
             border-radius: 50%;
-            border: 3px dashed rgba(220, 38, 38, 0.5);
-            margin: 0 auto 25px;
+            background: rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
             cursor: pointer;
-            overflow: hidden;
-            background: #000000;
-            transition: all 0.3s ease;
-            position: relative;
         }
 
-        .profile-pic-upload:hover {
-            border-color: #dc2626;
-            background: #0a0a0a;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
-        }
-
-        .profile-pic-upload img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
+        .profile-img-container:hover .upload-overlay {
+            opacity: 1;
         }
 
         .upload-text {
-            color: #94a3b8;
+            color: #dc2626;
             font-size: 14px;
             text-align: center;
-            padding: 20px;
         }
 
-        .name {
-            font-size: 2.8em;
+        #profilePicInput, #trizCertInput {
+            display: none;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: #dc2626;
+        }
+
+        .tagline {
+            font-size: 1.3em;
             color: #ffffff;
             margin-bottom: 30px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 10px rgba(220, 38, 38, 0.3);
         }
 
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-            padding: 0 20px;
-        }
-
-        .contact-item {
+        .social-links {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #cbd5e1;
-            font-size: 1.05em;
-            transition: transform 0.3s ease;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
         }
 
-        .contact-item:hover {
-            transform: translateX(5px);
-        }
-
-        .contact-item a {
-            color: #dc2626;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .contact-item a::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
+        .social-btn {
+            padding: 4px 12px;
             background: #dc2626;
-            transition: width 0.3s ease;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid #dc2626;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.8em;
         }
 
-        .contact-item a:hover {
-            color: #f87171;
+        .social-btn:hover {
+            background: #ef4444;
+            border-color: #ef4444;
         }
 
-        .contact-item a:hover::after {
-            width: 100%;
+        .social-btn:active {
+            background: #991b1b;
+            border-color: #991b1b;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
         }
 
         .section {
-            background: #0a0a0a;
-            padding: 35px;
-            margin-bottom: 35px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.3);
+            margin-bottom: 80px;
         }
 
         .section-title {
-            font-size: 1.9em;
+            font-size: 2.5em;
+            margin-bottom: 40px;
             color: #dc2626;
-            margin-bottom: 25px;
+            border-bottom: 2px solid #dc2626;
             padding-bottom: 15px;
-            border-bottom: 2px solid rgba(220, 38, 38, 0.3);
-            position: relative;
-            font-weight: 600;
         }
 
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 80px;
-            height: 2px;
-            background: #dc2626;
-        }
-
-        .education-details {
-            line-height: 2;
-            color: #e2e8f0;
-            font-size: 1.1em;
-        }
-
-        .education-details strong {
-            color: #f87171;
-        }
-
-        .publication {
+        .card {
+            background: #000000;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            padding: 30px;
             margin-bottom: 25px;
-            padding: 20px;
-            background: #141414;
-            border-radius: 12px;
             transition: all 0.3s ease;
-            border-left: 3px solid #dc2626;
         }
 
-        .publication:hover {
-            background: #1f1f1f;
-            transform: translateX(5px);
-            border-left: 3px solid #f87171;
+        .card:hover {
+            border-color: #dc2626;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(220, 38, 38, 0.2);
+        }
+
+        .card h3 {
+            color: #dc2626;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .card-meta {
+            color: #cccccc;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .card p, .card ul {
+            color: #ffffff;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            margin-top: 15px;
+        }
+
+        .card ul li {
+            margin-bottom: 8px;
         }
 
         .publication-title {
+            color: #ffffff;
             font-weight: 600;
             margin-bottom: 10px;
-            color: #f0f9ff;
-            font-size: 1.2em;
         }
 
         .publication-title a {
             color: #dc2626;
             text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .publication-title a::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #dc2626;
-            transition: width 0.3s ease;
+            transition: color 0.3s ease;
         }
 
         .publication-title a:hover {
-            color: #f87171;
-        }
-
-        .publication-title a:hover::after {
-            width: 100%;
-        }
-
-        .publication-title a:visited {
-            color: #c084fc;
-        }
-
-        .publication-title a:active {
-            color: #f472b6;
+            color: #ef4444;
+            text-decoration: underline;
         }
 
         .authors {
-            color: #94a3b8;
-            font-size: 1em;
+            color: #cccccc;
+            font-size: 0.95em;
         }
 
-        .authors b {
-            color: #e2e8f0;
+        .current-role {
+            border-left: 4px solid #dc2626;
+            background: #0a0a0a;
         }
 
-        .accolade, .fellowship, .position, .mentoring {
-            margin-bottom: 18px;
-            padding: 18px;
-            background: #141414;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            border-left: 3px solid #dc2626;
-        }
-
-        .accolade:hover, .fellowship:hover, .position:hover, .mentoring:hover {
-            background: #1f1f1f;
-            transform: translateX(5px);
-            border-left: 3px solid #f87171;
-        }
-
-        .accolade::before, .fellowship::before, .position::before, .mentoring::before {
-            content: "•";
-            color: #dc2626;
-            font-size: 1.5em;
-            margin-right: 10px;
-        }
-
-        .accolade a, .fellowship a, .mentoring a {
-            color: #dc2626;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .accolade a::after, .fellowship a::after, .mentoring a::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #dc2626;
-            transition: width 0.3s ease;
-        }
-
-        .accolade a:hover, .fellowship a:hover, .mentoring a:hover {
-            color: #f87171;
-        }
-
-        .accolade a:hover::after, .fellowship a:hover::after, .mentoring a:hover::after {
-            width: 100%;
-        }
-
-        .accolade a:visited, .fellowship a:visited, .mentoring a:visited {
-            color: #c084fc;
-        }
-
-        .accolade a:active, .fellowship a:active, .mentoring a:active {
-            color: #f472b6;
-        }
-
-        .tech-strength {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        .tech-item {
-            padding: 20px;
-            background: #141414;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            border-left: 3px solid #dc2626;
-        }
-
-        .tech-item:hover {
-            background: #1f1f1f;
-            transform: translateX(5px);
-            border-left: 3px solid #f87171;
-        }
-
-        .tech-item strong {
+        .skill-tag {
+            display: inline-block;
+            background: #000000;
             color: #dc2626;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9em;
+            border: 1px solid #dc2626;
         }
 
-        .tech-item a {
+        .clickable-link {
             color: #dc2626;
             text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .tech-item a::after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: #dc2626;
-            transition: width 0.3s ease;
-        }
-
-        .tech-item a:hover {
-            color: #f87171;
-        }
-
-        .tech-item a:hover::after {
-            width: 100%;
-        }
-
-        .language-section {
-            text-align: center;
-            font-size: 1.2em;
-            color: #e2e8f0;
-            padding: 30px;
-            background: #141414;
-            border-radius: 15px;
-            margin-top: 20px;
-            border: 1px solid rgba(220, 38, 38, 0.2);
-        }
-
-        .language-section strong {
-            color: #dc2626;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
-            border-top: 1px solid rgba(220, 38, 38, 0.2);
-            color: #94a3b8;
-            background: #0a0a0a;
-            border-radius: 20px;
-        }
-
-        .current-position {
-            background: #0a0a0a;
-            padding: 35px;
-            border-radius: 20px;
-            margin-bottom: 40px;
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.25);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .current-position::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: #dc2626;
-        }
-
-        .current-position h3 {
-            color: #dc2626;
-            margin-bottom: 20px;
-            font-size: 1.5em;
+            cursor: pointer;
+            transition: color 0.3s ease;
             font-weight: 600;
         }
 
-        .current-position p {
-            margin-bottom: 15px;
-            color: #e2e8f0;
-            line-height: 1.8;
+        .clickable-link:hover {
+            color: #ef4444;
+            text-decoration: underline;
         }
 
-        .current-position strong {
-            color: #f87171;
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #000000;
+            color: #cccccc;
+            border-top: 1px solid #333333;
         }
 
         @media (max-width: 768px) {
-            .name {
-                font-size: 2.2em;
+            h1 {
+                font-size: 2.5em;
             }
-            
-            .contact-info {
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .grid {
                 grid-template-columns: 1fr;
             }
-            
-            .section {
-                padding: 25px;
-            }
-            
-            .header {
-                padding: 30px 20px;
-            }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            color: #ffffff;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* Smaller and unified edit-link styling */
+        .edit-link {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 2px 8px;
+            background: #dc2626;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #dc2626;
+            vertical-align: middle;
+        }
+
+        .edit-link:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+        }
+
+        .edit-link:active {
+            background: #991b1b;
+            border-color: #991b1b;
+        }
+
+        .edit-link.saved {
+            background: #16a34a;
+            border-color: #16a34a;
+        }
+
+        .edit-link.saved:hover {
+            background: #22c55e;
+            border-color: #22c55e;
+        }
+
+        .link-input-group {
+            display: none;
+            margin-top: 10px;
+            padding: 15px;
+            background: #0a0a0a;
+            border: 1px solid #dc2626;
+            border-radius: 6px;
+        }
+
+        .link-input-group input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            background: #000000;
+            border: 1px solid #333333;
+            color: #ffffff;
+            border-radius: 4px;
+        }
+
+        .link-input-group button {
+            padding: 8px 16px;
+            background: #dc2626;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .link-input-group button:hover {
+            background: #ef4444;
+        }
+
+        /* TRIZ Certificate message styling */
+        #trizCertMsg {
+            color: #16a34a;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-left: 10px;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="profile-img-container" onclick="document.getElementById('profilePicInput').click()">
+                <img id="profileImage" src="https://via.placeholder.com/200/000000/dc2626?text=Upload+Photo" alt="Akhil Krishnan" class="profile-img">
+                <div class="upload-overlay">
+                    <div class="upload-text">
+                        📷<br>Click to Upload
+                    </div>
+                </div>
+            </div>
+            <input type="file" id="profilePicInput" accept="image/*">
+            <h1>Akhil Krishnan</h1>
+            <p class="tagline">Research Engineer | Social Impact Strategist | Published Researcher</p>
+            <div class="social-links">
+                <a href="mailto:akhil@example.com" class="social-btn">📧 Email</a>
+                <a href="https://github.com/akhilkrishnan" target="_blank" class="social-btn">💻 GitHub</a>
+                <a href="https://linkedin.com/in/akhilkrishnan" target="_blank" class="social-btn">💼 LinkedIn</a>
+                <a href="https://scholar.google.com/citations?user=akhilkrishnan" target="_blank" class="social-btn">🎓 Scholar</a>
+            </div>
+        </div>
+    </section>
+
     <div class="container">
-        <!-- Header Section -->
-        <div class="header">
-            <div class="profile-pic-upload" onclick="document.getElementById('profilePic').click()">
-                <img id="profileImage" style="display:none;">
-                <div class="upload-text" id="uploadText">
-                    <div>📷</div>
-                    <div>Click to upload profile picture</div>
-                </div>
-                <input type="file" id="profilePic" accept="image/*" style="display:none;" onchange="loadProfilePic(event)">
-            </div>
-            <h1 class="name">Akhil Krishnan</h1>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span>📱</span>
-                    <span>Phone: <a href="tel:+91-9549814309">+91-9549814309</a></span>
-                </div>
-                <div class="contact-item">
-                    <span>📧</span>
-                    <span>Email: <a href="mailto:krishnanakhil465@gmail.com">krishnanakhil465@gmail.com</a></span>
-                </div>
-                <div class="contact-item">
-                    <span>🌐</span>
-                    <span>GitHub: <a href="https://krishnanakhil465-cloud.github.io/" target="_blank">https://krishnanakhil465-cloud.github.io/</a></span>
-                </div>
-                <div class="contact-item">
-                    <span>💼</span>
-                    <span>LinkedIn: <a href="https://linkedin.com/in/akhilkrishnan" target="_blank">linkedin.com/in/akhilkrishnan</a></span>
-                </div>
-                <div class="contact-item">
-                    <span>🎓</span>
-                    <span>Google Scholar: <a href="https://scholar.google.com/citations?user=akhilkrishnan" target="_blank">Google Scholar Profile</a></span>
-                </div>
-            </div>
-        </div>
-
         <!-- Current Position -->
-        <div class="current-position">
-            <h3>Gram Vikas, Mohuda</h3>
-            <p><strong>Strategic Leadership Team - Program Unit; Junior Manager</strong></p>
-            <p><strong>Nov 2024 - Present</strong></p>
-            <p><strong>Job Description:</strong> Support to project holders for Inter-Thematic coordination.</p>
-            <p>○ Designed an orientation framework for the implementation of large-scale program to external organizations.</p>
-            <p>○ Identified Gaps and proposed solutions for proper inter-thematic coordination.</p>
-            <p>○ Organized field visits and reviews for the project holders.</p>
-            <p>○ Assigned as a nodal person for point of contact from the Program Unit to Sundargarh District.</p>
-        </div>
+        <section class="section">
+            <h2 class="section-title">Current Position</h2>
+            <div class="card current-role">
+                <h3>Junior Manager - Strategic Leadership Team</h3>
+                <div class="card-meta">Gram Vikas, Mohuda | Nov 2024 - Present</div>
+                <p style="margin-bottom: 15px;">Support to project holders for Inter-Thematic coordination within the Program Unit.</p>
+                <ul>
+                    <li>Designed orientation framework for large-scale program implementation to external organizations</li>
+                    <li>Identified gaps and proposed solutions for inter-thematic coordination</li>
+                    <li>Organized field visits and reviews for project holders</li>
+                    <li>Nodal person for Program Unit to Sundargarh District</li>
+                </ul>
+            </div>
+        </section>
 
-        <!-- Education Section -->
-        <div class="section">
+        <!-- Education -->
+        <section class="section">
             <h2 class="section-title">Education</h2>
-            <div class="education-details">
-                <p><strong>Manipal University, Jaipur, Rajasthan, India</strong></p>
-                <p><strong>Branch:</strong> Electrical and Electronics Engineering</p>
-                <p><strong>CGPA:</strong> 7.0</p>
+            <div class="card">
+                <h3>B.Tech in Electrical and Electronics Engineering</h3>
+                <div class="card-meta">Manipal University, Jaipur, Rajasthan, India | CGPA: 7.0</div>
             </div>
-        </div>
+        </section>
 
-        <!-- Research Publications Section -->
-        <div class="section">
-            <h2 class="section-title">Research Publications, Patents & Books Published</h2>
-            
-            <div class="publication">
+        <!-- Research Publications -->
+        <section class="section">
+            <h2 class="section-title">Research Publications</h2>
+            <div class="card" id="pub1">
                 <div class="publication-title">
-                    <a href="#" onclick="alert('https://ieeexplore.ieee.org/document/8993310')">1) Nonlinear Dynamical Analysis of Inverted pendulum cart mechanism using bifurcation method</a>
+                    <a href="#" id="pub1-link" onclick="return false;">Nonlinear Dynamical Analysis of Inverted Pendulum Cart Mechanism using Bifurcation Method</a>
+                    <span class="edit-link" onclick="showLinkEditor('pub1')">Edit Link</span>
                 </div>
-                <div class="authors">
-                    Authors: <b>Akhil Krishnan</b>, Rithesh & Vishnu Goyal
+                <div class="authors">Authors: <strong>Akhil Krishnan</strong>, Rithesh & Vishnu Goyal</div>
+                <div id="pub1-editor" class="link-input-group">
+                    <input type="text" id="pub1-url" placeholder="Enter publication URL">
+                    <button onclick="saveLink('pub1')">Save</button>
+                    <button onclick="cancelLinkEditor('pub1')">Cancel</button>
                 </div>
             </div>
 
-            <div class="publication">
+            <div class="card" id="pub2">
                 <div class="publication-title">
-                    <a href="#" onclick="alert('https://ieeexplore.ieee.org/document/9596489')">2) Desalination of Marine water using Machine Learning Method</a>
+                    <a href="#" id="pub2-link" onclick="return false;">Desalination of Marine Water using Machine Learning Method</a>
+                    <span class="edit-link" onclick="showLinkEditor('pub2')">Edit Link</span>
                 </div>
-                <div class="authors">
-                    Authors: K. U. Parvathy, <b>A. Krishnan</b>, M. Bukya, R. Kumar and P. Randhawa
+                <div class="authors">Authors: K. U. Parvathy, <strong>A. Krishnan</strong>, M. Bukya, R. Kumar and P. Randhawa</div>
+                <div id="pub2-editor" class="link-input-group">
+                    <input type="text" id="pub2-url" placeholder="Enter publication URL">
+                    <button onclick="saveLink('pub2')">Save</button>
+                    <button onclick="cancelLinkEditor('pub2')">Cancel</button>
                 </div>
             </div>
 
-            <div class="publication">
+            <div class="card" id="pub3">
                 <div class="publication-title">
-                    <a href="#" onclick="alert('https://ieeexplore.ieee.org/document/9596243')">3) A Comparative Study on Intelligent Adaptive Control Techniques on a Nonlinear Inverted Pendulum Cart Mechanism</a>
+                    <a href="#" id="pub3-link" onclick="return false;">A Comparative Study on Intelligent Adaptive Control Techniques on a Nonlinear Inverted Pendulum Cart Mechanism</a>
+                    <span class="edit-link" onclick="showLinkEditor('pub3')">Edit Link</span>
                 </div>
-                <div class="authors">
-                    Authors: K. U. Parvathy, <b>A. Krishnan</b>, M. Bukya, R. Kumar and P. Randhawa
+                <div class="authors">Author: <strong>Akhil Krishnan</strong></div>
+                <div id="pub3-editor" class="link-input-group">
+                    <input type="text" id="pub3-url" placeholder="Enter publication URL">
+                    <button onclick="saveLink('pub3')">Save</button>
+                    <button onclick="cancelLinkEditor('pub3')">Cancel</button>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Scholastic Accolades Section -->
-        <div class="section">
-            <h2 class="section-title">Scholastic Accolades</h2>
-            
-            <div class="accolade">
-                <a href="#" onclick="alert('Summa Cum Laude Certificate')">○ Summa Cum Laude</a> - Awarded Summa Cum Laude with a Grade-Point Average (GPA) 10/10 in 8th semester.
+        <!-- Fellowships & Grants -->
+        <section class="section">
+            <h2 class="section-title">Fellowships & Grants</h2>
+            <div class="card" id="fellow1">
+                <h3>
+                    <a href="#" id="fellow1-link" class="clickable-link" onclick="return false;">State Bank of India Youth for India Fellowship</a>
+                    <span class="edit-link" onclick="showLinkEditor('fellow1')">Edit Link</span>
+                </h3>
+                <p>Selected as 1 of 76 from 50,000 global applicants (0.152% acceptance rate). Comprehensive fellowship including travel, housing, language training, and project allowances totaling $4,335.</p>
+                <div id="fellow1-editor" class="link-input-group">
+                    <input type="text" id="fellow1-url" placeholder="Enter fellowship URL">
+                    <button onclick="saveLink('fellow1')">Save</button>
+                    <button onclick="cancelLinkEditor('fellow1')">Cancel</button>
+                </div>
             </div>
-            
-            <div class="accolade">
-                ○ <strong>Top 1% out of 358 students</strong> - Awarded with A+ grade in 7 different subjects such as switch gears and protection, communication systems, power system operation and control, flexible AC transmission system, linear control systems, Bioinformatics for Engineers and sustainable development courses for exceptional performance.
-            </div>
-        </div>
 
-        <!-- Scholarship Fellowships & Grants Section -->
-        <div class="section">
-            <h2 class="section-title">Scholarship Fellowships & Grants</h2>
-            
-            <div class="fellowship">
-                <a href="#" onclick="alert('State Bank of India Youth for India Fellowship Details')">○ State Bank of India Youth for India Fellowship</a> - Accepted 1 of 76 successful candidates from 50,000 globally, with a grant intake rate of 0.152%. Received INR 3,07,556.5 ($ 4,335) in emoluments which includes travel allowance, housing allowance, language training, project allowance & emergency allowance.
+            <div class="card" id="fellow2">
+                <h3>
+                    <a href="#" id="fellow2-link" class="clickable-link" onclick="return false;">Rajasthan Administrative Service Grant</a>
+                    <span class="edit-link" onclick="showLinkEditor('fellow2')">Edit Link</span>
+                </h3>
+                <p>Received INR 30,000 for the installation of Reverse Osmosis (RO) plant in project VASUDHA: The Lifeblood of Rural Communities.</p>
+                <div id="fellow2-editor" class="link-input-group">
+                    <input type="text" id="fellow2-url" placeholder="Enter grant URL">
+                    <button onclick="saveLink('fellow2')">Save</button>
+                    <button onclick="cancelLinkEditor('fellow2')">Cancel</button>
+                </div>
             </div>
-            
-            <div class="fellowship">
-                <a href="#" onclick="alert('Rajasthan Administrative Service Grants Details')">○ Rajasthan Administrative Service Grants</a> - Received sum of INR 30,000 for the Installation of Reverse Osmosis (RO) plant in the project VASUDHA: The Lifeblood of Rural Communities.
-            </div>
-            
-            <div class="fellowship">
-                <a href="#" onclick="alert('Global Digital Corps Field Ops Fellowship Details')">○ Global Digital Corps Field Ops Fellowship</a> - At times of COVID-19 national emergency, the certificate holder has a basic understanding of disaster management and field operations and can be a valuable volunteer for the benefit of the society.
-            </div>
-            
-            <div class="fellowship">
-                <a href="#" onclick="alert('Manipal University Research Grant Details')">○ Manipal University Research Grant</a> - Received sum of INR 15,162 ($ 227.43) as a financial aid for presenting research paper on Nonlinear Dynamics at an International Conference conducted by IEEE. The fund included circumnavigation, registration fee & other expenses.
-            </div>
-        </div>
 
-        <!-- Technical Strength Section -->
-        <div class="section">
-            <h2 class="section-title">Technical Strength</h2>
-            <div class="tech-strength">
-                <div class="tech-item">
-                    <strong>TRIZ- Theory of Solving Inventive Problems:</strong> <a href="#" onclick="alert('TRIZ Level 1 Certificate')">Level 1</a>
-                </div>
-                <div class="tech-item">
-                    <strong>Typesetting:</strong> LaTeX and Microsoft word
-                </div>
-                <div class="tech-item">
-                    <strong>Operating system:</strong> Windows & Ubuntu
-                </div>
-                <div class="tech-item">
-                    <strong>Programming language:</strong> Python, C & Java
+            <div class="card" id="fellow3">
+                <h3>
+                    <a href="#" id="fellow3-link" class="clickable-link" onclick="return false;">Global Digital Corps Field Ops Fellowship</a>
+                    <span class="edit-link" onclick="showLinkEditor('fellow3')">Edit Link</span>
+                </h3>
+                <p>COVID-19 emergency response certification in disaster management and field operations.</p>
+                <div id="fellow3-editor" class="link-input-group">
+                    <input type="text" id="fellow3-url" placeholder="Enter fellowship URL">
+                    <button onclick="saveLink('fellow3')">Save</button>
+                    <button onclick="cancelLinkEditor('fellow3')">Cancel</button>
                 </div>
             </div>
-        </div>
 
-        <!-- Positions of Responsibility Section -->
-        <div class="section">
-            <h2 class="section-title">Positions of Responsibility</h2>
-            
-            <div class="position">
-                ○ <strong>Organizing Committee Member (Manipal University Model United Nations):</strong> Spearheaded 70+ students under my supervision under the Hospitality section.
+            <div class="card" id="fellow4">
+                <h3>
+                    <a href="#" id="fellow4-link" class="clickable-link" onclick="return false;">Manipal University Research Grant</a>
+                    <span class="edit-link" onclick="showLinkEditor('fellow4')">Edit Link</span>
+                </h3>
+                <p>Received $227 as financial aid for presenting research on Nonlinear Dynamics at IEEE International Conference.</p>
+                <div id="fellow4-editor" class="link-input-group">
+                    <input type="text" id="fellow4-url" placeholder="Enter grant URL">
+                    <button onclick="saveLink('fellow4')">Save</button>
+                    <button onclick="cancelLinkEditor('fellow4')">Cancel</button>
+                </div>
             </div>
-            
-            <div class="position">
-                ○ <strong>Student Coordinator(MNEmerge and University of Kent):</strong> Coordinated and managed scheduling of Events during the international workshop for 600 participants.
+        </section>
+
+        <!-- Achievements -->
+        <section class="section">
+            <h2 class="section-title">Academic Achievements</h2>
+            <div class="grid">
+                <div class="card" id="achieve1">
+                    <h3>
+                        <a href="#" id="achieve1-link" class="clickable-link" onclick="return false;">Summa Cum Laude</a>
+                        <span class="edit-link" onclick="showLinkEditor('achieve1')">Edit Link</span>
+                    </h3>
+                    <p>Awarded GPA 10/10 for exceptional academic performance in 8th semester.</p>
+                    <div id="achieve1-editor" class="link-input-group">
+                        <input type="text" id="achieve1-url" placeholder="Enter certificate URL">
+                        <button onclick="saveLink('achieve1')">Save</button>
+                        <button onclick="cancelLinkEditor('achieve1')">Cancel</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Top 1% Academic Rank</h3>
+                    <p>Ranked in top 1% out of 358 students. A+ grades in 7 subjects including advanced power systems and control engineering.</p>
+                </div>
             </div>
-            
-            <div class="position">
-                ○ <strong>Fund Raiser (Dr. Rajarathnam Medical & Educational Foundation):</strong> Donated a sum of INR 15,0
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="card">
+                <div>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">LaTeX</span>
+                    <span class="skill-tag">TRIZ Level 1</span>
+                    <span class="edit-link" onclick="document.getElementById('trizCertInput').click()">Upload Certificate</span>
+                    <input type="file" id="trizCertInput" accept="image/*,.pdf">
+                    <span id="trizCertMsg"></span>
+                    <span class="skill-tag">Windows</span>
+                    <span class="skill-tag">Ubuntu</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Control Systems</span>
+                    <span class="skill-tag">Nonlinear Dynamics</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership -->
+        <section class="section">
+            <h2 class="section-title">Leadership Experience</h2>
+            <div class="card">
+                <h3>Organizing Committee Member</h3>
+                <div class="card-meta">Manipal University Model United Nations</div>
+                <p>Led hospitality section supervising 70+ students during the event.</p>
+            </div>
+            <div class="card">
+                <h3>Student Coordinator</h3>
+                <div class="card-meta">MNEmerge & University of Kent</div>
+                <p>Coordinated and managed scheduling for international workshop with 600 participants.</p>
+            </div>
+            <div class="card">
+                <h3>Fund Raiser</h3>
+                <div class="card-meta">Dr. Rajarathnam Medical & Educational Foundation</div>
+                <p>Successfully raised funds for medical and educational initiatives.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Akhil Krishnan. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Built with passion for research and social impact</p>
+    </footer>
+
+    <script>
+        // Profile picture upload
+        document.getElementById('profilePicInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Link editing functions
+        function showLinkEditor(id) {
+            document.getElementById(id + '-editor').style.display = 'block';
+        }
+
+        function cancelLinkEditor(id) {
+            document.getElementById(id + '-editor').style.display = 'none';
+        }
+
+        function saveLink(id) {
+            const url = document.getElementById(id + '-url').value;
+            if (url) {
+                const link = document.getElementById(id + '-link');
+                link.href = url;
+                link.onclick = null;
+                link.target = '_blank';
+                document.getElementById(id + '-url').value = '';
+                cancelLinkEditor(id);
+
+                // Change button color to indicate saved state
+                const editButton = event.target.closest('.card').querySelector('.edit-link');
+                editButton.classList.add('saved');
+                editButton.textContent = 'Link Saved ✓';
+
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    editButton.classList.remove('saved');
+                    editButton.textContent = 'Edit Link';
+                }, 2000);
+            } else {
+                alert('Please enter a valid URL');
+            }
+        }
+
+        // TRIZ certificate upload
+        document.getElementById('trizCertInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('trizCertMsg').textContent = 'Certificate uploaded: ' + file.name;
+            } else {
+                document.getElementById('trizCertMsg').textContent = '';
+            }
+        });
+    </script>
+</body>
+</html
